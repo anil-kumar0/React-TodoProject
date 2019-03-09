@@ -4,29 +4,39 @@ import Todos from './components/Todos';
 
 class App extends Component {
   state = {
-    todos: [
+    todos : [
       {
         id: 1,
-        title: 'Prepare the resume',
+        title: 'Cook Shrimp curry',
         completed: false
       },
       {
         id: 2,
-        title: 'Cook some food',
+        title: 'Take out the trash',
         completed: false
       },
       {
         id: 3,
-        title: 'Buy some beer',
+        title: 'Do the Laundry',
         completed: false
       }
     ]
   }
 
-  render() {
-    return (
-      <div className="App">
-        <Todos todos={this.state.todos}/>
+  markComplete = (id) => {
+    this.setState = ({
+      todos : this.state.todos.map( todo => {
+        if(todo.id === id){
+          todo.completed = !todo.completed
+        }
+        return todo;
+      })
+    });
+  }
+  render(){
+    return(
+      <div className="app">
+        <Todos todos = {this.state.todos} markComplete={this.markComplete}/>
       </div>
     );
   }
